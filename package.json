@@ -1,0 +1,37 @@
+{
+  "name": "fastifyproj",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "fastify": "^3.24.1",
+    "fastify-jwt": "^4.1.1",
+    "knex": "^0.95.14",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.4.0",
+    "tsconfig": "^7.0.0",
+    "tsconfig-paths": "^3.12.0",
+    "tslib": "^2.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.12",
+    "i": "^0.3.7",
+    "typescript": "^4.5.3"
+  },
+  "engines": {
+    "node": "16.13.1"
+  },
+  "scripts": {
+    "start": "node dist/src/server.js",
+    "clean": "rimraf dist",
+    "start:dev": "nodemon",
+    "postinstall": "npx knex migrate:latest && npm run build",
+    "start:production": "NODE_ENV=production node dist/src/server.js",
+    "start:staging": "NODE_ENV=staging node -r tsconfig-paths/register dist/server.js",
+    "knex": "./node_modules/.bin/knex --knexfile knexfile.ts",
+    "build": "tsc -p tsconfig.json",
+    "install:dir": "mkdir src && cd src && mkdir controller helpers models routes services && cd ..",
+    "install:helpers": "cd src && cd helpers && mkdir constants types utils validations && cd .."
+  }
+}
